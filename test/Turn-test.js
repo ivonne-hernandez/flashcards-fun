@@ -32,3 +32,31 @@ describe('Turn', function() {
     const userGuess = turn.returnGuess();
     expect(userGuess).to.equal('spongebob');
   });
+
+  it('should return the current card', function() {
+    const card = new Card();
+    const turn = new Turn('spongebob', card);
+    const currentCard = turn.returnCard();
+    expect(currentCard).to.deep.equal(card);
+  });
+
+  it('should evaluate whether the guess is true or false', function() {
+    const card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
+    const turn1 = new Turn('object', card);
+    const turn2 = new Turn('yellow', card);
+    const evaluateGuess1 = turn1.evaluateGuess();
+    const evaluateGuess2 = turn2.evaluateGuess();
+    expect(evaluateGuess1).to.be.true;
+    expect(evaluateGuess2).to.be.false;
+  });
+
+  it('should tell the user whether their guess is correct or incorrect', function() {
+    const card = new Card(1, 'What allows you to define a set of related information using key-value pairs?', ['object', 'array', 'function'], 'object');
+    const turn1 = new Turn('object', card);
+    const turn2 = new Turn('yellow', card);
+    const feedbackTurn1 = turn1.giveFeedback();
+    const feedbackTurn2 = turn2.giveFeedback();
+    expect(feedbackTurn1).to.equal('correct!');
+    expect(feedbackTurn2).to.equal('incorrect!');
+  });
+});
