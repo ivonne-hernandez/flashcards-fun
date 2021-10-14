@@ -88,15 +88,15 @@ describe('Round', function() {
     }
   );
 
-  it('should console log the end of the round with a message that includes the percentage of questions answered correctly', function() {
+  it('should return a message that includes the percentage of questions answered correctly', function() {
     round.takeTurn(`sea otter`);
     round.takeTurn(`gallbladder`);
     round.takeTurn(`wrong answer`);
     round.calculatePercentCorrect();
-    const expectedConsoleLog = `** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly!`;
+    const expected = `** Round over! ** You answered ${round.calculatePercentCorrect()}% of the questions correctly!`;
 
     const result = round.endRound();
     
-    expect(result).to.equal(expectedConsoleLog);
+    expect(result).to.equal(expected);
   });
 });
