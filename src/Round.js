@@ -5,6 +5,7 @@ class Round {
     this.deck = deck;
     this.turns = 0;
     this.incorrectGuesses = [];
+    this.startTime = Date.now();
   }
 
   returnCurrentCard() {
@@ -26,10 +27,24 @@ class Round {
   }
 
   endRound() {
-   console.log(`** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`);
-   return `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
-  }
+    let elapsedTimeSeconds = (Date.now() - this.startTime) / 1000;
+    let seconds = elapsedTimeSeconds % 60;
+    let minutes = (elapsedTimeSeconds - seconds) / 60;
+    let minutesDisplay = `minute`;
+    let secondsDisplay = `second`;
+    
+    if (minutes !== 1) {
+      minutesDisplay += `s`;
+    }
 
+    if (parseInt(seconds) !== 1) {
+      secondsDisplay += `s`;
+    }
+
+    console.log(`Time to complete the game: ${minutes} ${minutesDisplay} and ${parseInt(seconds)} ${secondsDisplay}`);
+    console.log(`** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`);
+    return `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
+  }
 }
 
 module.exports = Round;
