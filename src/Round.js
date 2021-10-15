@@ -41,8 +41,8 @@ class Round {
       secondsDisplay += `s`;
     }
 
-    console.log(`Time to complete the game: ${minutes} ${minutesDisplay} and ${parseInt(seconds)} ${secondsDisplay}`);
     console.log(`** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`);
+    console.log(`Time to complete the game: ${minutes} ${minutesDisplay} and ${parseInt(seconds)} ${secondsDisplay}`);
     return `** Round over! ** You answered ${this.calculatePercentCorrect()}% of the questions correctly!`;
   }
 }
